@@ -1,4 +1,5 @@
 import { getHeroByKey, getHeroStats } from "@/services/heroService";
+import AbilityCard from "@/components/ui/AbilityCard";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -128,29 +129,7 @@ export default async function HeroDetailPage({ params }) {
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {hero.abilities?.map((item) => (
-              <div
-                key={item.name}
-                className="bg-accent/0.5 border border-accent/40 rounded-lg p-4 flex flex-col gap-4"
-              >
-                {/* Icon */}
-                <div className="border-b pb-4 border-accent/30">
-                  <div className="relative w-12 h-12">
-                    <Image
-                      src={item.icon}
-                      alt={item.name}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-                {/* DETAILS */}
-                <div className="flex flex-col gap-2">
-                  <p className="text-xl uppercase font-semibold">{item.name}</p>
-                  <p className="text-lg tracking-wide text-white/80">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
+              <AbilityCard key={item.name} item={item} />
             ))}
           </div>
         </div>
