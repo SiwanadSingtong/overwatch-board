@@ -14,7 +14,7 @@ function Hero() {
     >
       <div className="flex flex-col gap-6 text-white">
         {/* INFO */}
-        <h2 className="text-7xl font-bold uppercase italic">
+        <h2 className="text-5xl md:text-7xl font-bold uppercase italic">
           Choose Your <span className="text-accent">hero</span>
         </h2>
         <p className="w-full sm:w-[80%] md:w-[70%] lg:w-[60%] xl:w-[50%] font-semibold text-lg">
