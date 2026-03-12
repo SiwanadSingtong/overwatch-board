@@ -18,6 +18,11 @@ A high-performance, responsive web application for exploring Overwatch 2 heroes 
 
 - **Framework:** [Next.js 14/15](https://nextjs.org/) (App Router)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Language:** [JavaScript](https://js.org/index.html)
 - **Data Source:** [OverFast API](https://overfast-api.tekrop.fr/)
 - **Deployment:** [Vercel](https://vercel.com/)
+
+## Example
+<img width="2545" height="1271" alt="image" src="https://github.com/user-attachments/assets/9e4f062d-456c-4313-a6eb-2c3116d24843" />
+<img width="2540" height="1260" alt="image" src="https://github.com/user-attachments/assets/75394d01-935c-48f8-981c-94a358621d71" />
+<img width="2542" height="1267" alt="image" src="https://github.com/user-attachments/assets/c69c017b-6911-4bd7-9174-5d5f30528e44" />
