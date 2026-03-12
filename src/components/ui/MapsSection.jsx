@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 
 const COLS = 4;
-const INITIAL_ROWS = 3;
+const INITIAL_ROWS = 2;
 const INITIAL_COUNT = COLS * INITIAL_ROWS;
 
 export default function MapsSection({ maps }) {
