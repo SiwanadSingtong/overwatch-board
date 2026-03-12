@@ -1,6 +1,6 @@
 # 🛡️ Overwatch 2 Hero Dashboard
 
-A high-performance, responsive web application for exploring Overwatch 2 heroes data. Built with **Next.js**, **Tailwind CSS**, and **TypeScript**, fetching real-time data from the OverFast API.
+A high-performance, responsive web application for exploring Overwatch 2 heroes data. Built with **Next.js**, **Tailwind CSS**, and **JavaScript**, fetching real-time data from the OverFast API.
 
 🔗 **Live Demo:** [overwatch-board.vercel.app](https://overwatch-board.vercel.app/)
 
