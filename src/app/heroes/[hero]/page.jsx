@@ -139,7 +139,7 @@ export default async function HeroDetailPage({ params }) {
       {/* STORY */}
       <div className="py-12 px-4 md:px-12 lg:px-24 xl:px-48">
         <div className="relative flex items-center justify-center mb-6">
-          <h3 className="uppercase italic font-bold text-3xl text-center">
+          <h3 className="uppercase italic font-bold text-3xl text-center text-accent">
             story
           </h3>
           <Link href={hero.story.media.link} target="_blank" className="absolute right-0 bg-accent rounded-md p-2 text-black font-extrabold text-xs tracking-wider uppercase italic hover:scale-105 transition-all">See {hero.story.media.type}</Link>

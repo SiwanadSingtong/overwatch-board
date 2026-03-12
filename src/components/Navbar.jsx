@@ -12,18 +12,18 @@ const menu = [
     title: "heroes",
     link: "/",
   },
+//   {
+//     title: "game modes",
+//     link: "/game-modes",
+//   },
   {
-    title: "game modes",
-    link: "/game-modes",
+    title: "maps & modes",
+    link: "/maps-modes",
   },
-  {
-    title: "maps",
-    link: "/maps",
-  },
-  {
-    title: "players",
-    link: "/players",
-  },
+//   {
+//     title: "players",
+//     link: "/players",
+//   },
 ];
 
 function Navbar() {
