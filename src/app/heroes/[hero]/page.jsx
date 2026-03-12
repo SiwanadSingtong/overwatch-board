@@ -2,6 +2,7 @@ import { getHeroByKey, getHeroStats } from "@/services/heroService";
 import AbilityCard from "@/components/ui/AbilityCard";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 export async function generateMetadata({ params }) {
   const { hero: heroKey } = await params;
@@ -103,7 +104,7 @@ export default async function HeroDetailPage({ params }) {
       <div className="py-12 px-4 md:px-12 lg:px-24 xl:px-48 flex gap-4">
         {/* LORE */}
         <div className="w-1/3">
-          <h3 className="uppercase italic text-accent font-bold text-3xl">
+          <h3 className="uppercase italic text-accent font-bold text-3xl mb-3">
             the lore
           </h3>
           <div className="flex flex-col gap-2">
@@ -124,7 +125,7 @@ export default async function HeroDetailPage({ params }) {
         </div>
         {/* ABILITIES */}
         <div className="w-2/3">
-          <h3 className="uppercase italic text-accent font-bold text-3xl">
+          <h3 className="uppercase italic text-accent font-bold text-3xl mb-3">
             abilities
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -132,6 +133,52 @@ export default async function HeroDetailPage({ params }) {
               <AbilityCard key={item.name} item={item} />
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* STORY */}
+      <div className="py-12 px-4 md:px-12 lg:px-24 xl:px-48">
+        <div className="relative flex items-center justify-center mb-6">
+          <h3 className="uppercase italic font-bold text-3xl text-center">
+            story
+          </h3>
+          <Link href={hero.story.media.link} target="_blank" className="absolute right-0 bg-accent rounded-md p-2 text-black font-extrabold text-xs tracking-wider uppercase italic hover:scale-105 transition-all">See {hero.story.media.type}</Link>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {hero.story.chapters.map((item) => (
+            <div
+              key={item.title}
+              className="relative aspect-video rounded-xl overflow-hidden group"
+            >
+              <Image
+                alt={item.title}
+                src={item.picture}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300" />
+
+              {/* Title — visible by default, fades out on hover */}
+              <div className="absolute inset-x-0 bottom-0 p-4 transition-opacity duration-300 group-hover:opacity-0">
+                <p className="text-white font-bold text-lg leading-snug line-clamp-2">
+                  {item.title}
+                </p>
+              </div>
+
+              {/* Detail panel — slides up from bottom on hover */}
+              <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col gap-1 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <p className="text-accent font-bold text-lg leading-snug">
+                  {item.title}
+                </p>
+                {item.content && (
+                  <p className="text-white/80 text-sm line-clamp-4">
+                    {item.content}
+                  </p>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </main>
