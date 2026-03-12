@@ -26,3 +26,4 @@ A high-performance, responsive web application for exploring Overwatch 2 heroes 
 <img width="2545" height="1271" alt="image" src="https://github.com/user-attachments/assets/9e4f062d-456c-4313-a6eb-2c3116d24843" />
 <img width="2540" height="1260" alt="image" src="https://github.com/user-attachments/assets/75394d01-935c-48f8-981c-94a358621d71" />
 <img width="2542" height="1267" alt="image" src="https://github.com/user-attachments/assets/c69c017b-6911-4bd7-9174-5d5f30528e44" />
+<img width="2560" height="3328" alt="image" src="https://github.com/user-attachments/assets/f3a96eb2-e56e-4ed7-a97e-d92b3a83c1d7" />
