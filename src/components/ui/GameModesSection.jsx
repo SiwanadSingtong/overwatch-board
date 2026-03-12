@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@mui/material";
 import { Gamepad2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -28,20 +29,25 @@ export default function GameModesSection({ gameModes }) {
           Game Modes
           <Gamepad2 size={36} className="text-accent" />
         </h2>
-        <p className="text-white/50 my-2">Master every corner of the globe. From the futuristic streets of Busan to the historic alleys of King's Row.</p>
+        <p className="text-white/50 my-2">
+          Master every corner of the globe. From the futuristic streets of Busan
+          to the historic alleys of King's Row.
+        </p>
         <div className="flex gap-1 rounded-lg p-1">
           {tabs.map((t) => (
-            <button
+            <Button
+              variant="contained"
+              size="small"
               key={t.key}
               onClick={() => setTab(t.key)}
-              className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-colors duration-200 cursor-pointer ${
+              className={`px-4 py-1.5 rounded-md! text-sm! font-semibold! transition-colors duration-200 cursor-pointer shadow-none! ${
                 tab === t.key
-                  ? "bg-accent text-white"
-                  : "text-white/50 hover:text-white"
+                  ? "bg-accent! text-white"
+                  : "text-white/50! hover:text-white bg-transparent!"
               }`}
             >
               {t.label}
-            </button>
+            </Button>
           ))}
         </div>
       </div>

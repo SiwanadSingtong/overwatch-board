@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@mui/material";
 import { Map } from "lucide-react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
@@ -41,17 +42,19 @@ export default function MapsSection({ maps }) {
         </h2>
         <div className="flex flex-wrap gap-1 bg-white/5 rounded-lg p-1">
           {gamemodes.map((gm) => (
-            <button
+            <Button
+              variant="contained"
+              size="small"
               key={gm}
               onClick={() => handleTabChange(gm)}
-              className={`px-3 py-1.5 rounded-md text-xs font-semibold uppercase transition-colors duration-200 cursor-pointer ${
+              className={`px-3 py-1.5 rounded-md! font-semibold! uppercase transition-colors duration-200 cursor-pointer shadow-none! ${
                 activeMode === gm
-                  ? "bg-accent text-white"
-                  : "text-white/50 hover:text-white"
+                  ? "bg-accent! text-white!"
+                  : "text-white/50! hover:text-white! bg-transparent!"
               }`}
             >
               {gm === "all" ? "All" : gm}
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -113,4 +116,3 @@ export default function MapsSection({ maps }) {
     </section>
   );
 }
-
