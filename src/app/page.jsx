@@ -21,7 +21,7 @@ export default async function Home() {
       {/* CONTENT */}
       <div className="px-4 md:px-12 lg:px-24 xl:px-48 flex flex-col gap-12">
         {/* FILTER */}
-        <div className="flex gap-6 border-b pb-4 border-accent">
+        <div className="flex flex-col md:flex-row gap-6 border-b pb-4 border-accent">
           {/* All Roles */}
           <Button
             variant="contained"
