@@ -101,20 +101,22 @@ export default async function HeroDetailPage({ params }) {
       </div>
 
       {/* DETAIL */}
-      <div className="py-12 px-4 md:px-12 lg:px-24 xl:px-48 flex gap-4">
+      <div className="py-12 px-4 md:px-12 lg:px-24 xl:px-48 flex flex-col md:flex-row gap-4">
         {/* LORE */}
-        <div className="w-1/3">
+        <div className="w-full md:w-1/3">
           <h3 className="uppercase italic text-accent font-bold text-3xl mb-3">
             the lore
           </h3>
-          <div className="flex flex-col gap-2">
-            <div className="flex justify-between">
-              <Image
-                src={hero.portrait}
-                width={180}
-                height={180}
-                alt={hero.name}
-              />
+          <div className="flex flex-row md:flex-col gap-2">
+            <div className="flex justify-between items-start">
+              <div className="relative w-40 h-40">
+                <Image
+                  src={hero.portrait}
+                  fill
+                  alt={hero.name}
+                  className="object-contain"
+                />
+              </div>
               <div className="bg-accent/20 text-accent font-semibold h-fit p-2 rounded-lg hidden lg:block">
                 <p className="uppercase text-white">birthday</p>
                 <p>{hero.birthday}</p>
@@ -124,7 +126,7 @@ export default async function HeroDetailPage({ params }) {
           </div>
         </div>
         {/* ABILITIES */}
-        <div className="w-2/3">
+        <div className="w-full md:w-2/3">
           <h3 className="uppercase italic text-accent font-bold text-3xl mb-3">
             abilities
           </h3>
@@ -138,11 +140,17 @@ export default async function HeroDetailPage({ params }) {
 
       {/* STORY */}
       <div className="py-12 px-4 md:px-12 lg:px-24 xl:px-48">
-        <div className="relative flex items-center justify-center mb-6">
-          <h3 className="uppercase italic font-bold text-3xl text-center text-accent">
+        <div className="relative flex items-center justify-between mb-6">
+          <h3 className="uppercase italic font-bold text-3xl text-accent">
             story
           </h3>
-          <Link href={hero.story.media.link} target="_blank" className="absolute right-0 bg-accent rounded-md p-2 text-black font-extrabold text-xs tracking-wider uppercase italic hover:scale-105 transition-all">See {hero.story.media.type}</Link>
+          <Link
+            href={hero.story.media.link}
+            target="_blank"
+            className="absolute right-0 bg-accent rounded-md p-2 text-black font-extrabold text-xs tracking-wider uppercase italic hover:scale-105 transition-all"
+          >
+            See {hero.story.media.type}
+          </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {hero.story.chapters.map((item) => (
