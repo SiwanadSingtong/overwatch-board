@@ -140,8 +140,8 @@ export default async function HeroDetailPage({ params }) {
 
       {/* STORY */}
       <div className="py-12 px-4 md:px-12 lg:px-24 xl:px-48">
-        <div className="relative flex items-center justify-center mb-6">
-          <h3 className="uppercase italic font-bold text-3xl text-center text-accent">
+        <div className="relative flex items-center justify-between mb-6">
+          <h3 className="uppercase italic font-bold text-3xl text-accent">
             story
           </h3>
           <Link
