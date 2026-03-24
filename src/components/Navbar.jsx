@@ -127,17 +127,15 @@ function Navbar() {
 
       {/* BACKDROP */}
       <div
-        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 lg:hidden ${
-          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 lg:hidden ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
         onClick={() => setMenuOpen(false)}
       />
 
       {/* SLIDING DRAWER */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-primary z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-64 bg-primary z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${menuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* CLOSE BUTTON */}
         <div className="flex justify-end p-4">
@@ -157,9 +155,8 @@ function Navbar() {
               <Link
                 href={m.link}
                 onClick={() => setMenuOpen(false)}
-                className={`block hover:text-accent transition-colors ${
-                  pathname === m.link ? "text-accent font-semibold" : ""
-                }`}
+                className={`block hover:text-accent transition-colors ${pathname === m.link ? "text-accent font-semibold" : ""
+                  }`}
               >
                 {m.title}
               </Link>
