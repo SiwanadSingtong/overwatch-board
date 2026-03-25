@@ -3,8 +3,10 @@
 import { Box, TextField } from "@mui/material";
 import { BoxIcon, MenuIcon, SearchIcon, XIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getHeroes } from "@/services/heroService";
 
 const menu = [
   {
@@ -29,6 +31,23 @@ function Navbar() {
   const pathname = usePathname();
   const [searchFocused, setSearchFocused] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [heroes, setHeroes] = useState([]);
+
+  useEffect(() => {
+    if (pathname === "/" && heroes.length === 0) {
+      getHeroes().then((data) => setHeroes(data)).catch(console.error);
+    }
+  }, [pathname, heroes.length]);
+
+  const filteredHeroes = searchQuery
+    ? heroes
+        .filter((h) => {
+           const name = h.name || h.key || "";
+           return name.toLowerCase().includes(searchQuery.toLowerCase());
+        })
+        .slice(0, 5)
+    : [];
 
   return (
     <>
@@ -59,9 +78,11 @@ function Navbar() {
 
         {/* RIGHT SECTION */}
         <div className="flex gap-4 items-center">
-          {/* SEARCH — lg+ only */}
-          <Box
+          {/* SEARCH — lg+ only - Show only on hero page (/) */}
+          {pathname === "/" && (
+            <Box
             sx={{
+              position: "relative",
               display: "flex",
               alignItems: "center",
               backgroundColor: "#1e293b",
@@ -90,6 +111,13 @@ function Navbar() {
               }}
               onFocus={() => setSearchFocused(true)}
               onBlur={() => setSearchFocused(false)}
+              onChange={(e) => {
+                const val = e.target.value;
+                setSearchQuery(val);
+                window.dispatchEvent(
+                  new CustomEvent("search-hero", { detail: val })
+                );
+              }}
               sx={{
                 "& input::placeholder": {
                   color: "white",
@@ -103,7 +131,43 @@ function Navbar() {
                 },
               }}
             />
-          </Box>
+
+            {/* SEARCH SUGGESTIONS */}
+            {searchFocused && searchQuery && filteredHeroes.length > 0 && (
+              <div 
+                className="absolute top-full left-0 right-0 mt-3 bg-primary border border-accent/20 rounded-lg shadow-xl overflow-hidden z-50 flex flex-col"
+                onMouseDown={(e) => e.preventDefault()} // Keep focus on input when clicking dropdown
+              >
+                {filteredHeroes.map((hero) => (
+                  <Link
+                    key={hero.key}
+                    href={`/heroes/${hero.key}`}
+                    className="flex items-center gap-3 p-3 hover:bg-second transition-colors cursor-pointer"
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSearchFocused(false);
+                      // Give the input time to unfocus if needed, or dispatch empty search
+                      window.dispatchEvent(new CustomEvent("search-hero", { detail: "" }));
+                    }}
+                  >
+                    <div className="relative w-8 h-8 rounded shrink-0 overflow-hidden bg-white/10">
+                      <Image
+                        src={hero.portrait}
+                        alt={hero.name}
+                        fill
+                        className="object-cover"
+                        sizes="32px"
+                      />
+                    </div>
+                    <span className="text-white text-sm font-semibold uppercase truncate">
+                      {hero.name}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            )}
+            </Box>
+          )}
 
           {/* PLAY NOW BUTTON — md+ only */}
           <Link
