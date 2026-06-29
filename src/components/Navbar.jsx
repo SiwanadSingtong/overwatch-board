@@ -42,11 +42,11 @@ function Navbar() {
 
   const filteredHeroes = searchQuery
     ? heroes
-        .filter((h) => {
-           const name = h.name || h.key || "";
-           return name.toLowerCase().includes(searchQuery.toLowerCase());
-        })
-        .slice(0, 5)
+      .filter((h) => {
+        const name = h.name || h.key || "";
+        return name.toLowerCase().includes(searchQuery.toLowerCase());
+      })
+      .slice(0, 5)
     : [];
 
   return (
@@ -81,91 +81,91 @@ function Navbar() {
           {/* SEARCH — lg+ only - Show only on hero page (/) */}
           {pathname === "/" && (
             <Box
-            sx={{
-              position: "relative",
-              display: "flex",
-              alignItems: "center",
-              backgroundColor: "#1e293b",
-              borderRadius: 3,
-              px: 1.5,
-              height: 48,
-              outline: searchFocused
-                ? "2px solid #ee8c2b"
-                : "2px solid transparent",
-              transition: "outline-color 0.2s",
-            }}
-            className="hidden! lg:flex!"
-          >
-            <SearchIcon
-              size={20}
-              color={searchFocused ? "#ee8c2b" : "white"}
-              style={{ marginRight: "12px", transition: "color 0.2s" }}
-            />
-            <TextField
-              placeholder="Search Hero..."
-              variant="standard"
-              fullWidth
-              size="small"
-              InputProps={{
-                disableUnderline: true,
-              }}
-              onFocus={() => setSearchFocused(true)}
-              onBlur={() => setSearchFocused(false)}
-              onChange={(e) => {
-                const val = e.target.value;
-                setSearchQuery(val);
-                window.dispatchEvent(
-                  new CustomEvent("search-hero", { detail: val })
-                );
-              }}
               sx={{
-                "& input::placeholder": {
-                  color: "white",
-                  opacity: 0.6,
-                  fontSize: 14,
-                },
-                "& input": {
-                  color: "white",
-                  padding: 0,
-                  margin: 0,
-                },
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                backgroundColor: "#1e293b",
+                borderRadius: 3,
+                px: 1.5,
+                height: 48,
+                outline: searchFocused
+                  ? "2px solid #ee8c2b"
+                  : "2px solid transparent",
+                transition: "outline-color 0.2s",
               }}
-            />
+              className="hidden! lg:flex!"
+            >
+              <SearchIcon
+                size={20}
+                color={searchFocused ? "#ee8c2b" : "white"}
+                style={{ marginRight: "12px", transition: "color 0.2s" }}
+              />
+              <TextField
+                placeholder="Search Hero..."
+                variant="standard"
+                fullWidth
+                size="small"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                onFocus={() => setSearchFocused(true)}
+                onBlur={() => setSearchFocused(false)}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setSearchQuery(val);
+                  window.dispatchEvent(
+                    new CustomEvent("search-hero", { detail: val })
+                  );
+                }}
+                sx={{
+                  "& input::placeholder": {
+                    color: "white",
+                    opacity: 0.6,
+                    fontSize: 14,
+                  },
+                  "& input": {
+                    color: "white",
+                    padding: 0,
+                    margin: 0,
+                  },
+                }}
+              />
 
-            {/* SEARCH SUGGESTIONS */}
-            {searchFocused && searchQuery && filteredHeroes.length > 0 && (
-              <div 
-                className="absolute top-full left-0 right-0 mt-3 bg-primary border border-accent/20 rounded-lg shadow-xl overflow-hidden z-50 flex flex-col"
-                onMouseDown={(e) => e.preventDefault()} // Keep focus on input when clicking dropdown
-              >
-                {filteredHeroes.map((hero) => (
-                  <Link
-                    key={hero.key}
-                    href={`/heroes/${hero.key}`}
-                    className="flex items-center gap-3 p-3 hover:bg-second transition-colors cursor-pointer"
-                    onClick={() => {
-                      setSearchQuery("");
-                      setSearchFocused(false);
-                      // Give the input time to unfocus if needed, or dispatch empty search
-                      window.dispatchEvent(new CustomEvent("search-hero", { detail: "" }));
-                    }}
-                  >
-                    <div className="relative w-8 h-8 rounded shrink-0 overflow-hidden bg-white/10">
-                      <Image
-                        src={hero.portrait}
-                        alt={hero.name}
-                        fill
-                        className="object-cover"
-                        sizes="32px"
-                      />
-                    </div>
-                    <span className="text-white text-sm font-semibold uppercase truncate">
-                      {hero.name}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            )}
+              {/* SEARCH SUGGESTIONS */}
+              {searchFocused && searchQuery && filteredHeroes.length > 0 && (
+                <div
+                  className="absolute top-full left-0 right-0 mt-3 bg-primary border border-accent/20 rounded-lg shadow-xl overflow-hidden z-50 flex flex-col"
+                  onMouseDown={(e) => e.preventDefault()} // Keep focus on input when clicking dropdown
+                >
+                  {filteredHeroes.map((hero) => (
+                    <Link
+                      key={hero.key}
+                      href={`/heroes/${hero.key}`}
+                      className="flex items-center gap-3 p-3 hover:bg-second transition-colors cursor-pointer"
+                      onClick={() => {
+                        setSearchQuery("");
+                        setSearchFocused(false);
+                        // Give the input time to unfocus if needed, or dispatch empty search
+                        window.dispatchEvent(new CustomEvent("search-hero", { detail: "" }));
+                      }}
+                    >
+                      <div className="relative w-8 h-8 rounded shrink-0 overflow-hidden bg-white/10">
+                        <Image
+                          src={hero.portrait}
+                          alt={hero.name}
+                          fill
+                          className="object-cover"
+                          sizes="32px"
+                        />
+                      </div>
+                      <span className="text-white text-sm font-semibold uppercase truncate">
+                        {hero.name}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
             </Box>
           )}
 
